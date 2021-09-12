@@ -313,9 +313,10 @@ public class RegisterPage extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Password Cannot be Empty.", "Error", JOptionPane.INFORMATION_MESSAGE);
             
         
-        if(!pass.equals(conpass))
+        if(!pass.equals(conpass)){
                 JOptionPane.showMessageDialog(null, "Password not Matched", "Error", JOptionPane.INFORMATION_MESSAGE);
-                
+                pFlag = 0;
+        }    
             if(fnFlag == 1 && lnFlag == 1 && unFlag == 1 && emFlag == 1 && pFlag == 1 )
                 InsetInDatabase(username, fname, lname,  email, pass);
         
@@ -353,6 +354,7 @@ public class RegisterPage extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(RegisterPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

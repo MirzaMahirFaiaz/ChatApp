@@ -197,7 +197,7 @@ public class StartingPage extends javax.swing.JFrame {
             if(conpass.equals(pass)){
                 JOptionPane.showMessageDialog(null, "Log In Successful.", "Info", JOptionPane.INFORMATION_MESSAGE);
                 dispose();
-                HomePage hp = new HomePage(rs.getString("FIRSTNAME"));  
+                HomePage hp = new HomePage(username);  
                 hp.setVisible(true);
             } 
             else
