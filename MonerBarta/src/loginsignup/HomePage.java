@@ -1,14 +1,21 @@
 package loginsignup;
 
+import java.awt.*;
+import java.awt.event.*;
+import java.io.*;
+import java.net.*;
 import java.sql.*;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
 
-public class HomePage extends javax.swing.JFrame {
+public class HomePage extends javax.swing.JFrame implements Runnable{
 
     Connection con;
     String username;
+    BufferedWriter writer;
+    BufferedReader reader;
     public HomePage() {
         initComponents();
     }
@@ -37,6 +44,12 @@ public class HomePage extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
         }
+          try{
+           
+           Socket socketClient = new Socket("localhost", 0);
+           writer = new BufferedWriter(new OutputStreamWriter(socketClient.getOutputStream()));
+           reader = new BufferedReader(new InputStreamReader(socketClient.getInputStream()));
+       }catch(Exception e){}
     }
 
     @SuppressWarnings("unchecked")
@@ -51,7 +64,7 @@ public class HomePage extends javax.swing.JFrame {
         jButtonLogOut1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         scrollPane1 = new java.awt.ScrollPane();
-        textArea2 = new java.awt.TextArea();
+        textAreaDisplayMsgs = new java.awt.TextArea();
         textArea1 = new java.awt.TextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
@@ -135,7 +148,7 @@ public class HomePage extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(153, 153, 255));
 
         scrollPane1.setBackground(new java.awt.Color(204, 255, 255));
-        scrollPane1.add(textArea2);
+        scrollPane1.add(textAreaDisplayMsgs);
         scrollPane1.add(textArea1);
 
         jTextArea2.setColumns(20);
@@ -155,6 +168,11 @@ public class HomePage extends javax.swing.JFrame {
         jScrollPane3.setViewportView(MsgWhichWillBeSend);
 
         jButton1.setText("SEND");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -218,6 +236,18 @@ public class HomePage extends javax.swing.JFrame {
         cp.setVisible(true);
     }//GEN-LAST:event_jButtonChangePasswordActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String str = username+"\n"+MsgWhichWillBeSend.getText();
+        try{
+            writer.write(str);
+            writer.write("\r\n");
+            writer.flush();
+        }
+        catch(Exception ex){}
+        MsgWhichWillBeSend.setText("");
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -248,7 +278,10 @@ public class HomePage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HomePage().setVisible(true);
+                HomePage hP = new HomePage();
+            Thread t1 = new Thread(hP);
+            t1.start();
+                hP.setVisible(true);
             }
         });
     }
@@ -270,6 +303,30 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea2;
     private java.awt.ScrollPane scrollPane1;
     private java.awt.TextArea textArea1;
-    private java.awt.TextArea textArea2;
+    private java.awt.TextArea textAreaDisplayMsgs;
     // End of variables declaration//GEN-END:variables
+
+//    @Override
+//    public void actionPerformed(ActionEvent e) {
+//        String str = username+"\n"+MsgWhichWillBeSend.getText();
+//        try{
+//            writer.write(str);
+//            writer.write("\r\n");
+//            writer.flush();
+//        }
+//        catch(Exception ex){}
+//        MsgWhichWillBeSend.setText("");
+////To change body of generated methods, choose Tools | Templates.
+//    }
+
+    @Override
+    public void run() {
+         try{
+            String msg = "";
+            while((msg = reader.readLine()) != null){
+                textAreaDisplayMsgs.append(msg + "\n");
+            }
+        }catch(Exception e){}
+         //To change body of generated methods, choose Tools | Templates.
+    }
 }

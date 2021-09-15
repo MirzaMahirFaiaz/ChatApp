@@ -192,7 +192,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.ScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="java.awt.TextArea" name="textArea2">
+            <Component class="java.awt.TextArea" name="textAreaDisplayMsgs">
             </Component>
             <Component class="java.awt.TextArea" name="textArea1">
             </Component>
@@ -247,6 +247,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="SEND"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
