@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package loginsignup;
 
 import java.io.*;
 import java.net.*;
 import java.util.*;
 
-/**
- *
- * @author HP
- */
 public class Server implements Runnable {
     Socket socket;
     
@@ -55,7 +46,7 @@ public class Server implements Runnable {
     
     
     public static void main(String[] args) throws Exception{
-        ServerSocket s = new ServerSocket(0);
+        ServerSocket s = new ServerSocket(2003);
         while(true){
             Socket socket = s.accept();
             Server server = new Server(socket);

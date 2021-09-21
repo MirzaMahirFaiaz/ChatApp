@@ -46,7 +46,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable{
         }
           try{
            
-           Socket socketClient = new Socket("localhost", 0);
+           Socket socketClient = new Socket("localhost", 2003);
            writer = new BufferedWriter(new OutputStreamWriter(socketClient.getOutputStream()));
            reader = new BufferedReader(new InputStreamReader(socketClient.getInputStream()));
        }catch(Exception e){}
@@ -63,16 +63,11 @@ public class HomePage extends javax.swing.JFrame implements Runnable{
         jButtonChangePassword = new javax.swing.JButton();
         jButtonLogOut1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        scrollPane1 = new java.awt.ScrollPane();
-        textAreaDisplayMsgs = new java.awt.TextArea();
-        textArea1 = new java.awt.TextArea();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
         MsgWhichWillBeSend = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTextAreaDisplayMsg = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Moner Barta");
@@ -147,22 +142,6 @@ public class HomePage extends javax.swing.JFrame implements Runnable{
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 255));
 
-        scrollPane1.setBackground(new java.awt.Color(204, 255, 255));
-        scrollPane1.add(textAreaDisplayMsgs);
-        scrollPane1.add(textArea1);
-
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
-
-        scrollPane1.add(jScrollPane2);
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
-
-        scrollPane1.add(jScrollPane1);
-
         MsgWhichWillBeSend.setColumns(20);
         MsgWhichWillBeSend.setRows(5);
         jScrollPane3.setViewportView(MsgWhichWillBeSend);
@@ -174,26 +153,31 @@ public class HomePage extends javax.swing.JFrame implements Runnable{
             }
         });
 
+        jTextAreaDisplayMsg.setColumns(20);
+        jTextAreaDisplayMsg.setRows(5);
+        jScrollPane4.setViewportView(jTextAreaDisplayMsg);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(scrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jButton1)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE))
@@ -237,7 +221,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable{
     }//GEN-LAST:event_jButtonChangePasswordActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        
         String str = username+"\n"+MsgWhichWillBeSend.getText();
         try{
             writer.write(str);
@@ -246,8 +230,22 @@ public class HomePage extends javax.swing.JFrame implements Runnable{
         }
         catch(Exception ex){}
         MsgWhichWillBeSend.setText("");
+        
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    
+    //java.awt.EventQueue.invokeLater(new Runnable() {
+    @Override
+            public void run() {
+            
+            try{
+            String msg = "";
+            while((msg = reader.readLine()) != null){
+                jTextAreaDisplayMsg.append(msg +"\n");
+                System.out.println(msg);
+            }
+        }catch(Exception e){}
+        
+        }
     /**
      * @param args the command line arguments
      */
@@ -275,17 +273,11 @@ public class HomePage extends javax.swing.JFrame implements Runnable{
         }
         //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                HomePage hP = new HomePage();
-            Thread t1 = new Thread(hP);
-            t1.start();
-                hP.setVisible(true);
-            }
-        });
+            //HomePage hP = new HomePage();
+            //Thread t1 = new Thread(hP);
+            //t1.start();
+            //hP.setVisible(true);       
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea MsgWhichWillBeSend;
     private javax.swing.JButton jButton1;
@@ -296,15 +288,11 @@ public class HomePage extends javax.swing.JFrame implements Runnable{
     private javax.swing.JLabel jLabelWelcome;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
-    private java.awt.ScrollPane scrollPane1;
-    private java.awt.TextArea textArea1;
-    private java.awt.TextArea textAreaDisplayMsgs;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTextArea jTextAreaDisplayMsg;
     // End of variables declaration//GEN-END:variables
+
 
 //    @Override
 //    public void actionPerformed(ActionEvent e) {
@@ -319,14 +307,5 @@ public class HomePage extends javax.swing.JFrame implements Runnable{
 ////To change body of generated methods, choose Tools | Templates.
 //    }
 
-    @Override
-    public void run() {
-         try{
-            String msg = "";
-            while((msg = reader.readLine()) != null){
-                textAreaDisplayMsgs.append(msg + "\n");
-            }
-        }catch(Exception e){}
-         //To change body of generated methods, choose Tools | Templates.
-    }
+    
 }
