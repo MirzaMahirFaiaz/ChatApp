@@ -1,14 +1,20 @@
-Wed Sep 22 02:41:52 BDT 2021 : Apache Derby Network Server - 10.13.1.1 - (1765088) started and ready to accept connections on port 1527
+Wed Sep 22 03:53:14 BDT 2021 : Apache Derby Network Server - 10.14.2.0 - (1828579) started and ready to accept connections on port 1527
 ----------------------------------------------------------------
-Wed Sep 22 02:41:52 BDT 2021:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.13.1.1 - (1765088): instance a816c00e-017c-0a17-ecd3-ffff99881173 
-on database directory E:\AUST\CSE 2.1\CSE 2100\Project\GitHub\ChatApp\Registration_Info with class loader sun.misc.Launcher$AppClassLoader@1d44bcfa 
-Loaded from file:/C:/Program%20Files/Java/db-derby-10.13.1.1-bin/lib/derby.jar
+Wed Sep 22 03:53:15 BDT 2021:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-017c-0a59-4330-ffff94cd64bc 
+on database directory D:\Code\JAVA Netbeans\Application\ChatApp\Registration_Info with class loader sun.misc.Launcher$AppClassLoader@1d44bcfa 
+Loaded from file:/C:/Program%20Files/Java/db-derby-10.14.2.0-bin/lib/derby.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_281-b09
-user.dir=C:\Program Files\Java\db-derby-10.13.1.1-bin
+java.runtime.version=1.8.0_271-b09
+user.dir=C:\Program Files\Java\db-derby-10.14.2.0-bin
 os.name=Windows 10
 os.arch=amd64
 os.version=10.0
-derby.system.home=E:\AUST\CSE 2.1\CSE 2100\Project\GitHub\ChatApp
+derby.system.home=D:\Code\JAVA Netbeans\Application\ChatApp
 Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Wed Sep 22 03:57:24 BDT 2021: Shutting down Derby engine
+----------------------------------------------------------------
+Wed Sep 22 03:57:24 BDT 2021:
+Shutting down instance a816c00e-017c-0a59-4330-ffff94cd64bc on database directory D:\Code\JAVA Netbeans\Application\ChatApp\Registration_Info with class loader sun.misc.Launcher$AppClassLoader@1d44bcfa 
+----------------------------------------------------------------
