@@ -60,7 +60,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable{
         jLabel1 = new javax.swing.JLabel();
         jLabelWelcome = new javax.swing.JLabel();
         jButtonViewProfile = new javax.swing.JButton();
-        jButtonChangePassword = new javax.swing.JButton();
+        jButtonReportProblem = new javax.swing.JButton();
         jButtonLogOut1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -88,11 +88,11 @@ public class HomePage extends javax.swing.JFrame implements Runnable{
             }
         });
 
-        jButtonChangePassword.setForeground(new java.awt.Color(0, 51, 204));
-        jButtonChangePassword.setText("Change Password");
-        jButtonChangePassword.addActionListener(new java.awt.event.ActionListener() {
+        jButtonReportProblem.setForeground(new java.awt.Color(0, 51, 204));
+        jButtonReportProblem.setText("Facing Any Problem?");
+        jButtonReportProblem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonChangePasswordActionPerformed(evt);
+                jButtonReportProblemActionPerformed(evt);
             }
         });
 
@@ -119,7 +119,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable{
                         .addGap(46, 46, 46))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonChangePassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonReportProblem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButtonLogOut1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButtonViewProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(83, 83, 83))))
@@ -134,7 +134,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonViewProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButtonChangePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonReportProblem, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonLogOut1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -153,7 +153,9 @@ public class HomePage extends javax.swing.JFrame implements Runnable{
             }
         });
 
+        jTextAreaDisplayMsg.setEditable(false);
         jTextAreaDisplayMsg.setColumns(20);
+        jTextAreaDisplayMsg.setFont(new java.awt.Font("Calibri Light", 0, 15)); // NOI18N
         jTextAreaDisplayMsg.setRows(5);
         jScrollPane4.setViewportView(jTextAreaDisplayMsg);
 
@@ -214,15 +216,15 @@ public class HomePage extends javax.swing.JFrame implements Runnable{
         sp.setVisible(true);
     }//GEN-LAST:event_jButtonLogOut1ActionPerformed
 
-    private void jButtonChangePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChangePasswordActionPerformed
+    private void jButtonReportProblemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReportProblemActionPerformed
         dispose();
-        ChangePassword cp = new ChangePassword(username);
-        cp.setVisible(true);
-    }//GEN-LAST:event_jButtonChangePasswordActionPerformed
+        ReportProblem rp = new ReportProblem(username);
+        rp.setVisible(true);
+    }//GEN-LAST:event_jButtonReportProblemActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
-        String str = username+"\n"+MsgWhichWillBeSend.getText();
+        String str = "\n" + username+" :\n"+MsgWhichWillBeSend.getText();
         try{
             writer.write(str);
             writer.write("\r\n");
@@ -281,8 +283,8 @@ public class HomePage extends javax.swing.JFrame implements Runnable{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea MsgWhichWillBeSend;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButtonChangePassword;
     private javax.swing.JButton jButtonLogOut1;
+    private javax.swing.JButton jButtonReportProblem;
     private javax.swing.JButton jButtonViewProfile;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelWelcome;
