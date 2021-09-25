@@ -5,6 +5,10 @@
  */
 package loginsignup;
 
+import java.io.*;
+import java.nio.file.*;
+
+
 /**
  *
  * @author HP
@@ -155,12 +159,23 @@ public class ReportProblem extends javax.swing.JFrame {
         // TODO add your handling code here:
         dispose();
         HomePage hp = new HomePage(uN);
+         Thread t1 = new Thread(hp);
+         t1.start();
         hp.setVisible(true);
 
     }//GEN-LAST:event_jButtonBackActionPerformed
 
     private void jButtonSubmittingProblemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSubmittingProblemActionPerformed
 
+        String prblm = jTextAreaUserProblem.getText();
+        try{
+        Path path = Paths.get("D:\\Code\\JAVA Netbeans\\Application\\ChatApp\\MonerBarta\\src\\loginsignup\\Users_Problem.txt");
+        prblm = '\n'+ uN + '\n' +prblm;
+        Files.write(path, prblm.getBytes(), StandardOpenOption.APPEND);
+        }
+        catch(IOException ex){
+            System.out.println(ex);
+        }
     jTextAreaUserProblem.setText("");
     }//GEN-LAST:event_jButtonSubmittingProblemActionPerformed
 
