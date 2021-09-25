@@ -5,6 +5,7 @@
  */
 package loginsignup;
 
+import java.awt.*;
 import java.sql.*;
 import javax.swing.*;
 
@@ -17,7 +18,7 @@ public class RegisterPage extends javax.swing.JFrame {
     Connection con;
     public RegisterPage() {
         initComponents();
-        //"jdbc:derby://localhost:1527/Registration_Info"
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("MonerBartaIcon.png")));
         try {
             con = DriverManager.getConnection("jdbc:derby://localhost:1527/Registration_Info", "Monerbarta", "admin");
         } catch (SQLException ex) {
@@ -50,6 +51,7 @@ public class RegisterPage extends javax.swing.JFrame {
         jButtonSignIn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Moner Barta");
         setLocation(new java.awt.Point(600, 200));
 
         jLabel1.setFont(new java.awt.Font("Sitka Small", 1, 36)); // NOI18N
@@ -242,6 +244,7 @@ public class RegisterPage extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     void InsetInDatabase(String username,String fname, String lname, String email, String pass){

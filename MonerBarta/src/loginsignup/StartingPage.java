@@ -1,22 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package loginsignup;
 
+import java.awt.*;
 import java.sql.*;
 import javax.swing.*;
 
-/**
- *
- * @author HP
- */
 public class StartingPage extends javax.swing.JFrame {
 
     Connection con;
     public StartingPage() {
         initComponents();
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("MonerBartaIcon.png")));
         try {
             con = DriverManager.getConnection("jdbc:derby://localhost:1527/Registration_Info", "Monerbarta", "admin");
         } catch (SQLException ex) {
@@ -169,6 +163,7 @@ public class StartingPage extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSignUpActionPerformed

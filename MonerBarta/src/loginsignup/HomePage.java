@@ -1,11 +1,9 @@
 package loginsignup;
 
 import java.awt.*;
-import java.awt.event.*;
 import java.io.*;
 import java.net.*;
 import java.sql.*;
-import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
@@ -18,11 +16,13 @@ public class HomePage extends javax.swing.JFrame implements Runnable{
     BufferedReader reader;
     public HomePage() {
         initComponents();
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("MonerBartaIcon.png")));
     }
     
     public HomePage(String username) {
         
         initComponents();
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("MonerBartaIcon.png")));
         try {
             
             try {
@@ -62,6 +62,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable{
         jButtonViewProfile = new javax.swing.JButton();
         jButtonReportProblem = new javax.swing.JButton();
         jButtonLogOut1 = new javax.swing.JButton();
+        jButtonViewMembers = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         MsgWhichWillBeSend = new javax.swing.JTextArea();
@@ -104,6 +105,14 @@ public class HomePage extends javax.swing.JFrame implements Runnable{
             }
         });
 
+        jButtonViewMembers.setForeground(new java.awt.Color(0, 51, 204));
+        jButtonViewMembers.setText("View Members");
+        jButtonViewMembers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonViewMembersActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -118,10 +127,12 @@ public class HomePage extends javax.swing.JFrame implements Runnable{
                         .addComponent(jLabelWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(46, 46, 46))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonReportProblem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonLogOut1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonViewProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonViewMembers, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jButtonReportProblem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonLogOut1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonViewProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(83, 83, 83))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -133,9 +144,11 @@ public class HomePage extends javax.swing.JFrame implements Runnable{
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonViewProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(13, 13, 13)
+                .addComponent(jButtonViewMembers, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonReportProblem, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonLogOut1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -202,6 +215,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable{
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonViewProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonViewProfileActionPerformed
@@ -234,6 +248,12 @@ public class HomePage extends javax.swing.JFrame implements Runnable{
         MsgWhichWillBeSend.setText("");
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButtonViewMembersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonViewMembersActionPerformed
+        dispose();
+        ViewMembers vm = new ViewMembers(username);
+        vm.setVisible(true);
+    }//GEN-LAST:event_jButtonViewMembersActionPerformed
     
     //java.awt.EventQueue.invokeLater(new Runnable() {
     @Override
@@ -285,6 +305,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable{
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonLogOut1;
     private javax.swing.JButton jButtonReportProblem;
+    private javax.swing.JButton jButtonViewMembers;
     private javax.swing.JButton jButtonViewProfile;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelWelcome;

@@ -7,27 +7,47 @@ package loginsignup;
 
 import java.awt.*;
 import java.io.*;
-import java.nio.file.*;
-
+import java.net.*;
+import java.sql.*;
+import javax.swing.*;
 
 /**
  *
- * @author HP
+ * @author Acer
  */
-public class ReportProblem extends javax.swing.JFrame {
+public class ViewMembers extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ReportProblem
-     */
-    String uN;
-    public ReportProblem() {
+    String uN ;
+    Connection con;
+    
+    public ViewMembers() {
         initComponents();
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("MonerBartaIcon.png")));
     }
-    public ReportProblem(String uN) {
-        this.uN = uN;
+    
+    public ViewMembers(String uN) {
         initComponents();
+        this.uN = uN;
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("MonerBartaIcon.png")));
+        try {
+                con = DriverManager.getConnection("jdbc:derby://localhost:1527/Registration_Info", "Monerbarta", "admin");
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.INFORMATION_MESSAGE);
+            }
+        try {
+            
+        String sql = "SELECT * FROM REGISTER";
+            
+        PreparedStatement ps = con.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        
+        while(rs.next())
+                jTextAreaUsername.append(rs.getString("USERNAME")+"\n");
+        }
+        catch (SQLException ex) {
+            //Logger.getLogger(SignUp.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Username Already Exist.", "Error", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 
     /**
@@ -39,85 +59,17 @@ public class ReportProblem extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jButtonBack = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jButtonSubmittingProblem = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextAreaUserProblem = new javax.swing.JTextArea();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jTextAreaUsername = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Moner Barta");
-
-        jPanel2.setBackground(new java.awt.Color(153, 153, 255));
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Write About Your Problem : ");
-
-        jButtonBack.setBackground(new java.awt.Color(255, 255, 255));
-        jButtonBack.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jButtonBack.setForeground(new java.awt.Color(143, 143, 255));
-        jButtonBack.setText("BACK");
-        jButtonBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonBackActionPerformed(evt);
-            }
-        });
-
-        jLabel4.setFont(new java.awt.Font("Sitka Small", 1, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Report");
-
-        jButtonSubmittingProblem.setBackground(new java.awt.Color(255, 255, 255));
-        jButtonSubmittingProblem.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jButtonSubmittingProblem.setForeground(new java.awt.Color(143, 143, 255));
-        jButtonSubmittingProblem.setText("SUBMIT");
-        jButtonSubmittingProblem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSubmittingProblemActionPerformed(evt);
-            }
-        });
-
-        jTextAreaUserProblem.setColumns(20);
-        jTextAreaUserProblem.setFont(new java.awt.Font("Calibri", 2, 18)); // NOI18N
-        jTextAreaUserProblem.setRows(5);
-        jScrollPane1.setViewportView(jTextAreaUserProblem);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(71, 71, 71)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(127, 127, 127)
-                        .addComponent(jButtonSubmittingProblem))
-                    .addComponent(jButtonBack, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap(58, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(jLabel4)
-                .addGap(29, 29, 29)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addComponent(jButtonSubmittingProblem)
-                .addGap(39, 39, 39)
-                .addComponent(jButtonBack)
-                .addGap(38, 38, 38))
-        );
 
         jLabel1.setFont(new java.awt.Font("Sitka Small", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(153, 153, 255));
@@ -138,6 +90,63 @@ public class ReportProblem extends javax.swing.JFrame {
                 .addGap(117, 117, 117)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel2.setBackground(new java.awt.Color(153, 153, 255));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Usernmaes :");
+
+        jButtonBack.setBackground(new java.awt.Color(255, 255, 255));
+        jButtonBack.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jButtonBack.setForeground(new java.awt.Color(143, 143, 255));
+        jButtonBack.setText("BACK");
+        jButtonBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBackActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Sitka Small", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Group Members");
+
+        jTextAreaUsername.setEditable(false);
+        jTextAreaUsername.setColumns(20);
+        jTextAreaUsername.setFont(new java.awt.Font("Calibri", 2, 18)); // NOI18N
+        jTextAreaUsername.setRows(5);
+        jScrollPane1.setViewportView(jTextAreaUsername);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(141, 141, 141)
+                .addComponent(jLabel4)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(44, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButtonBack)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(39, 39, 39))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jLabel4)
+                .addGap(34, 34, 34)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addComponent(jButtonBack)
+                .addGap(28, 28, 28))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -166,26 +175,7 @@ public class ReportProblem extends javax.swing.JFrame {
         Thread t1 = new Thread(hp);
         t1.start();
         hp.setVisible(true);
-
     }//GEN-LAST:event_jButtonBackActionPerformed
-
-    private void jButtonSubmittingProblemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSubmittingProblemActionPerformed
-
-        String prblm = jTextAreaUserProblem.getText();
-        try{
-        //Path path = Paths.get("D:\\Code\\JAVA Netbeans\\Application\\ChatApp\\MonerBarta\\src\\loginsignup\\Users_Problem.txt");
-        Path path = Paths.get("E:\\AUST\\CSE 2.1\\CSE 2100\\Project\\GitHub\\ChatApp\\MonerBarta\\src\\loginsignup\\Users_Problem.txt");
-        if(!prblm.equals(""))
-        {
-            prblm = '\n'+ uN + '\n' +prblm;
-            Files.write(path, prblm.getBytes(), StandardOpenOption.APPEND);
-        }
-        }
-        catch(IOException ex){
-            System.out.println(ex);
-        }
-    jTextAreaUserProblem.setText("");
-    }//GEN-LAST:event_jButtonSubmittingProblemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -204,35 +194,32 @@ public class ReportProblem extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ReportProblem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewMembers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ReportProblem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewMembers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ReportProblem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewMembers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ReportProblem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewMembers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               // new ReportProblem(uN).setVisible(true);
+                new ViewMembers().setVisible(true);
             }
         });
-      
-        };
-    
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBack;
-    private javax.swing.JButton jButtonSubmittingProblem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextAreaUserProblem;
+    private javax.swing.JTextArea jTextAreaUsername;
     // End of variables declaration//GEN-END:variables
 }

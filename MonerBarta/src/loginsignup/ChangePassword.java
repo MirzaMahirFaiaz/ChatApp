@@ -5,6 +5,7 @@
  */
 package loginsignup;
 
+import java.awt.*;
 import javax.swing.*;
 import java.sql.*;
 import java.util.logging.Level;
@@ -18,11 +19,12 @@ public class ChangePassword extends javax.swing.JFrame {
     
     public ChangePassword() {
         initComponents();
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("MonerBartaIcon.png")));
     }
     
     public ChangePassword(String username) {
         initComponents();
-        
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("MonerBartaIcon.png")));
         try {
             con = DriverManager.getConnection("jdbc:derby://localhost:1527/Registration_Info", "Monerbarta", "admin");
         } catch (SQLException ex) {
@@ -55,6 +57,7 @@ public class ChangePassword extends javax.swing.JFrame {
         jButtonBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Moner Barta");
         setLocation(new java.awt.Point(600, 200));
 
         jLabel1.setFont(new java.awt.Font("Sitka Small", 1, 36)); // NOI18N
@@ -194,6 +197,7 @@ public class ChangePassword extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     
     void PasswordUpdateInDatabase(String pass){
