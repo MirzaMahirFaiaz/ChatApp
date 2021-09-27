@@ -288,40 +288,43 @@ public class RegisterPage extends javax.swing.JFrame {
         String pass = jPasswordField.getText();
         String conpass = jConfirmPasswordField.getText();
         
-        int fnFlag = 0, lnFlag = 0, unFlag = 0, emFlag = 0, pFlag = 0;
+        int fnFlag = 0, lnFlag = 0, unFlag = 0, emFlag = 0, pFlag = 0,cpFlag = 0;
      
             if(!fname.equals(""))
                 fnFlag = 1;
-            else
-                JOptionPane.showMessageDialog(null, "First Name Cannot be Empty.", "Error", JOptionPane.INFORMATION_MESSAGE);
-            
+            //else
+                //JOptionPane.showMessageDialog(null, "First Name Cannot be Empty.", "Error", JOptionPane.INFORMATION_MESSAGE);
+                
             if(!lname.equals(""))
                 lnFlag = 1;
-            else
-                JOptionPane.showMessageDialog(null, "Last Name Cannot be Empty.", "Error", JOptionPane.INFORMATION_MESSAGE);
-
+            //else
+                //JOptionPane.showMessageDialog(null, "Last Name Cannot be Empty.", "Error", JOptionPane.INFORMATION_MESSAGE);
+            
             if(!username.equals(""))
                 unFlag = 1;
-            else
-                JOptionPane.showMessageDialog(null, "Userame Cannot be Empty.", "Error", JOptionPane.INFORMATION_MESSAGE);
+            //else
+                //JOptionPane.showMessageDialog(null, "Userame Cannot be Empty.", "Error", JOptionPane.INFORMATION_MESSAGE);
             
             if(!email.equals("") || email.contains("@") || email.endsWith(".com") || email.endsWith(".edu") )
                 emFlag = 1;
-            else
-                JOptionPane.showMessageDialog(null, "Invalid E-mail.", "Error", JOptionPane.INFORMATION_MESSAGE);
+            //else
+                //JOptionPane.showMessageDialog(null, "Invalid E-mail.", "Error", JOptionPane.INFORMATION_MESSAGE);
             
             if(!pass.equals(""))
                 pFlag = 1;
-            else
-                JOptionPane.showMessageDialog(null, "Password Cannot be Empty.", "Error", JOptionPane.INFORMATION_MESSAGE);
+            //else
+                //JOptionPane.showMessageDialog(null, "Password Cannot be Empty.", "Error", JOptionPane.INFORMATION_MESSAGE);
             
         
-        if(!pass.equals(conpass)){
+        if(!pass.equals(conpass) && pFlag == 1){
                 JOptionPane.showMessageDialog(null, "Password not Matched", "Error", JOptionPane.INFORMATION_MESSAGE);
                 pFlag = 0;
+                cpFlag = 1;
         }    
             if(fnFlag == 1 && lnFlag == 1 && unFlag == 1 && emFlag == 1 && pFlag == 1 )
                 InsetInDatabase(username, fname, lname,  email, pass);
+            else if(cpFlag == 0)
+                JOptionPane.showMessageDialog(null, "Invalid Information.", "Error", JOptionPane.INFORMATION_MESSAGE);
         
 
     }//GEN-LAST:event_jButtonConfirmActionPerformed
