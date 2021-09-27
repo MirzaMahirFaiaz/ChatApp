@@ -91,6 +91,7 @@ public class ViewProfile extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Moner Barta");
         setLocation(new java.awt.Point(600, 200));
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Sitka Small", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(153, 153, 255));

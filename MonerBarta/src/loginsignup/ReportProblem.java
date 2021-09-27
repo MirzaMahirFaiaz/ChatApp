@@ -51,6 +51,7 @@ public class ReportProblem extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Moner Barta");
+        setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 255));
 
@@ -173,8 +174,8 @@ public class ReportProblem extends javax.swing.JFrame {
 
         String prblm = jTextAreaUserProblem.getText();
         try{
-        //Path path = Paths.get("D:\\Code\\JAVA Netbeans\\Application\\ChatApp\\MonerBarta\\src\\loginsignup\\Users_Problem.txt");
-        Path path = Paths.get("E:\\AUST\\CSE 2.1\\CSE 2100\\Project\\GitHub\\ChatApp\\MonerBarta\\src\\loginsignup\\Users_Problem.txt");
+        Path path = Paths.get("D:\\Code\\JAVA Netbeans\\Application\\ChatApp\\MonerBarta\\src\\loginsignup\\Users_Problem.txt");
+        //Path path = Paths.get("E:\\AUST\\CSE 2.1\\CSE 2100\\Project\\GitHub\\ChatApp\\MonerBarta\\src\\loginsignup\\Users_Problem.txt");
         if(!prblm.equals(""))
         {
             prblm = '\n'+ uN + '\n' +prblm;

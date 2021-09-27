@@ -70,6 +70,7 @@ public class ViewMembers extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Moner Barta");
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Sitka Small", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(153, 153, 255));
@@ -96,7 +97,7 @@ public class ViewMembers extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Usernmaes :");
+        jLabel2.setText("Usernames :");
 
         jButtonBack.setBackground(new java.awt.Color(255, 255, 255));
         jButtonBack.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
